@@ -82,9 +82,14 @@ public class GameOfLifePanel extends JPanel implements Runnable {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (golMatrix.isAlive(i, j)) {
+
+//                    g.setColor(new Color(255,255,255));
+
                     g.fillRect(j * blockSize, i * blockSize, blockSize, blockSize);
                 } else {
+//                    g.setColor(new Color(0,0,0));
                     g.drawRect(j * blockSize, i * blockSize, blockSize, blockSize);
+//                    g.fillRect(j * blockSize, i * blockSize, blockSize, blockSize);
                 }
             }
         }
