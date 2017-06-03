@@ -41,7 +41,7 @@ public class GameOfLifePanel extends JPanel implements Runnable {
 
 
     public void randInitial() {
-        golMatrix.randSource(0.3);
+        golMatrix.randSource(0.16);
         repaint();
     }
 
@@ -66,7 +66,7 @@ public class GameOfLifePanel extends JPanel implements Runnable {
                 repaint();
 //            }
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(40);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
