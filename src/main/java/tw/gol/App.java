@@ -36,6 +36,11 @@ public class App {
         final JMenu menuLoad = new JMenu("加载文件");
         menu.add(menuLoad);
 
+        menuStart.setEnabled(true);
+        menuStop.setEnabled(false);
+        menuRandom.setEnabled(true);
+        menuLoad.setEnabled(true);
+
         menuLoad.addMenuListener(new MenuListener() {
             public void menuSelected(MenuEvent e) {
                 JFileChooser jfc=new JFileChooser();
@@ -64,6 +69,7 @@ public class App {
                 golPanel.startGame();
                 menuStart.setEnabled(false);
                 menuRandom.setEnabled(false);
+                menuLoad.setEnabled(false);
                 menuStop.setEnabled(true);
             }
 
@@ -82,6 +88,7 @@ public class App {
                 menuStart.setEnabled(true);
                 menuStop.setEnabled(false);
                 menuRandom.setEnabled(true);
+                menuLoad.setEnabled(true);
             }
 
             public void menuDeselected(MenuEvent e) {
