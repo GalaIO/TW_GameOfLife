@@ -1,13 +1,14 @@
-package tw.gof;
+package tw.gol;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import tw.gol.GUI.Imp.GOLMatrixImp;
 
 /**
- * Unit test for simple App.
+ * Unit test for simple GOLMatrixImp.
  */
-public class AppTest 
+public class AppTest
     extends TestCase
 {
     /**
@@ -31,75 +32,75 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
+    public void testGOLMatrixImp()
     {
         assertTrue( true );
     }
 
 
     public void testInit_normal(){
-        App app = new App(3,3);
+        GOLMatrixImp GOLMatrixImp = new GOLMatrixImp(3,3);
 
         int[][] arr = new int[3][3];
         for (int i = 0; i < 3; i++) {
             arr[1][i] = 1;
         }
 
-        assertEquals(app.initView(arr),true);
+        assertEquals(GOLMatrixImp.initView(arr),true);
 
     }
 
     public void testUpdateLife_normal(){
-        App app = new App(3, 3);
+        GOLMatrixImp GOLMatrixImp = new GOLMatrixImp(3, 3);
         int[][] graph = new int[][]{
                 {0, 0, 0},
                 {1, 1, 1},
                 {0, 0, 0}
         };
         String grapnew = "010\n010\n010\n";
-        app.initView(graph);
-        app.updateLife();
-        assertEquals(app.toString(), grapnew);
+        GOLMatrixImp.initView(graph);
+        GOLMatrixImp.updateLife();
+        assertEquals(GOLMatrixImp.toString(), grapnew);
     }
 
     public void testUpdateLife_In2Times_normal(){
-        App app = new App(3, 3);
+        GOLMatrixImp GOLMatrixImp = new GOLMatrixImp(3, 3);
         int[][] graph = new int[][]{
                 {0, 0, 0},
                 {1, 1, 1},
                 {0, 0, 0}
         };
         String grapnew = "000\n111\n000\n";
-        app.initView(graph);
-        app.updateLife();
-        app.updateLife();
-        assertEquals(app.toString(), grapnew);
+        GOLMatrixImp.initView(graph);
+        GOLMatrixImp.updateLife();
+        GOLMatrixImp.updateLife();
+        assertEquals(GOLMatrixImp.toString(), grapnew);
     }
 
     public void testUpdateLife_unnormal(){
-        App app = new App(2, 4);
+        GOLMatrixImp GOLMatrixImp = new GOLMatrixImp(2, 4);
         int[][] graph = new int[][]{
                 {1, 1, 1, 1},
                 {0, 0, 0, 0}
         };
         String grapnew = "0110\n0110\n";
-        app.initView(graph);
-        app.updateLife();
-        assertEquals(app.toString(), grapnew);
+        GOLMatrixImp.initView(graph);
+        GOLMatrixImp.updateLife();
+        assertEquals(GOLMatrixImp.toString(), grapnew);
     }
 
 
     public void testUpdateLife_testmodel2(){
-        App app = new App(3, 3);
+        GOLMatrixImp GOLMatrixImp = new GOLMatrixImp(3, 3);
         int[][] graph = new int[][]{
                 {0, 0, 0},
                 {1, 0, 1},
                 {1, 0, 0}
         };
         String grapnew = "000\n010\n010\n";
-        app.initView(graph);
-        app.updateLife();
-        assertEquals(app.toString(), grapnew);
+        GOLMatrixImp.initView(graph);
+        GOLMatrixImp.updateLife();
+        assertEquals(GOLMatrixImp.toString(), grapnew);
     }
 
 }

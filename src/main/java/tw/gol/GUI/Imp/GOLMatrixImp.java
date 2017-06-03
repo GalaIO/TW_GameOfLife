@@ -1,13 +1,13 @@
-package tw.gof;
+package tw.gol.GUI.Imp;
+
+import tw.gol.GUI.GOLMatrix;
 
 /**
- * Hello world!
- *
+ * Created by win10 on 2017/6/3.
  */
-public class App 
-{
+public class GOLMatrixImp implements GOLMatrix {
 
-//    视图中默认矩形的长度
+    //    视图中默认矩形的长度
     private int xLength= 3;
     private int yLength = 3;
 
@@ -15,7 +15,7 @@ public class App
     private int[][] view1 = null;
     private int[][] view2 = null;
     private boolean isView1InUse = false;
-    public App(int xLength, int yLength) {
+    public GOLMatrixImp(int xLength, int yLength) {
         this.xLength = xLength;
         this.yLength = yLength;
         view1 = new int[xLength][yLength];
@@ -68,6 +68,18 @@ public class App
         return true;
     }
 
+    public void randSource(double factor){
+        int[][] nowView = view1;
+        if(!isView1InUse) {
+            nowView = view2;
+        }
+        for (int i = 0; i < nowView.length; i++) {
+            for (int j = 0; j < nowView[i].length; j++) {
+                nowView[i][j] = Math.random() < factor?1:0;
+            }
+        }
+    }
+
     public void updateLife(){
         int[][] nowView = view1;
         if(!isView1InUse) {
@@ -80,6 +92,15 @@ public class App
         }
         //取反
         isView1InUse = !isView1InUse;
+    }
+
+    public Boolean isAlive(int x, int y) {
+
+        int[][] nowView = view1;
+        if(!isView1InUse) {
+            nowView = view2;
+        }
+        return nowView[x][y]>0?true:false;
     }
 
     @Override
@@ -113,34 +134,6 @@ public class App
                 }
             }
             System.out.println("");
-        }
-    }
-
-
-    public static void main(String[] args )
-    {
-
-//        App app = new App(3, 3);
-//        int[][] graph = new int[][]{
-//                {0, 0, 0},
-//                {1, 1, 1},
-//                {0, 0, 0}
-//        };
-        App app = new App(2, 4);
-        int[][] graph = new int[][]{
-                {1, 1, 1, 1},
-                {0, 0, 0, 0}
-        };
-        app.initView(graph);
-        while(true) {
-            app.updateLife();
-            app.printGame();
-            System.out.println("------------------------------");
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 }
