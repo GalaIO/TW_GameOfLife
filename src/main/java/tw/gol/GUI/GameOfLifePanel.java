@@ -74,7 +74,10 @@ public class GameOfLifePanel extends JPanel implements Runnable {
 
         }
     }
-
+    public void loadFromFile(String path){
+        golMatrix.loadFromFile(path);
+        repaint();
+    }
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

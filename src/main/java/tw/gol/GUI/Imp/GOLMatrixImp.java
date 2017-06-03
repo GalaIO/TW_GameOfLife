@@ -2,6 +2,8 @@ package tw.gol.GUI.Imp;
 
 import tw.gol.GUI.GOLMatrix;
 
+import java.io.*;
+
 /**
  * Created by win10 on 2017/6/3.
  */
@@ -68,7 +70,40 @@ public class GOLMatrixImp implements GOLMatrix {
         }
         return true;
     }
+    public void loadFromFile(String path){
+        File file = new File(path);
+        BufferedReader reader = null;
 
+        int[][] nowView = view1;
+        if(!isView1InUse) {
+            nowView = view2;
+        }
+        for (int i = 0; i < nowView.length; i++) {
+            for (int j = 0; j < nowView[i].length; j++) {
+                nowView[i][j] = 0;
+            }
+        }
+        int index = 0;
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            String line  = reader.readLine();
+            while(line != null && index<nowView.length){
+                for(int i=0; i<line.length()&&i<nowView[index].length; i++){
+                    if(line.charAt(i) != ' '){
+                        nowView[index][i] = 1;
+                    }else {
+                        nowView[index][i] = 0;
+                    }
+                }
+                line = reader.readLine();
+                index++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void randSource(double factor){
         int[][] nowView = view1;
         if(!isView1InUse) {

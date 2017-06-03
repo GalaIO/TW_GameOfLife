@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeListener;
+import java.io.File;
 
 /**
  * Hello world!
@@ -26,13 +27,36 @@ public class App {
         frame.setJMenuBar(menu);
 
 
-        final JMenu menuStart = new JMenu("start");
+        final JMenu menuStart = new JMenu("开始");
         menu.add(menuStart);
-        final JMenu menuRandom = new JMenu("random");
+        final JMenu menuRandom = new JMenu("随机生命");
         menu.add(menuRandom);
-        final JMenu menuStop = new JMenu("stop");
+        final JMenu menuStop = new JMenu("停止");
         menu.add(menuStop);
+        final JMenu menuLoad = new JMenu("加载文件");
+        menu.add(menuLoad);
 
+        menuLoad.addMenuListener(new MenuListener() {
+            public void menuSelected(MenuEvent e) {
+                JFileChooser jfc=new JFileChooser();
+                jfc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES );
+                jfc.showDialog(new JLabel(), "选择");
+                File file=jfc.getSelectedFile();
+                if(file.isDirectory()){
+                    System.out.println("文件夹:"+file.getAbsolutePath());
+                }else if(file.isFile()){
+                    System.out.println("文件:"+file.getAbsolutePath());
+                }
+                System.out.println(jfc.getSelectedFile().getName());
+                golPanel.loadFromFile(jfc.getSelectedFile().toString());
+            }
+
+            public void menuDeselected(MenuEvent e) {
+            }
+
+            public void menuCanceled(MenuEvent e) {
+            }
+        });
         menuStart.addMenuListener(new MenuListener() {
             public void menuSelected(MenuEvent e) {
 
@@ -81,7 +105,7 @@ public class App {
             }
         });
 
-
+//        golPanel.setBounds(10, 10, golPanel.getWidth(), golPanel.getHeight());
         frame.add(golPanel);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -89,18 +113,8 @@ public class App {
         frame.setSize(golPanel.getWidth(), golPanel.getHeight() + 40);
         frame.setTitle("Game of Life");
 
-
-//        ControlPanel controlPanel = initControlPanel(golPanel);
-
-
-//        frame.add(controlPanel);
-
         frame.setVisible(true);
-//        frame.setSize(500,500);
-        //frame.setResizable(false);
 
-
-//        golPanel.startGame();
     }
 
     private static ControlPanel initControlPanel(final GameOfLifePanel golPanel) {
