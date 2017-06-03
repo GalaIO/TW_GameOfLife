@@ -37,6 +37,7 @@ public class GOLMatrixImp implements GOLMatrix {
         return true;
     }
 
+//    更新像素值
     public  boolean updataPixel(int x ,int y){
         if(x<0 || y<0 || x>=xLength || y>=yLength){
             return false;
